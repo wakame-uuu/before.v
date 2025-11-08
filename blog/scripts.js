@@ -1,3 +1,9 @@
+console.log("1秒待機します...");
+setTimeout(function() {
+    console.log("1秒経ちました。コードの実行を再開します。");
+}, 1000);
+
+
 document.getElementById('accept-btn').addEventListener('click', function() {
     document.cookie = "yuki=True; max-age=31536000; path=/";
     location.href = "/";
