@@ -1,4 +1,4 @@
-slim2の改造リポジトリ<br>
+slim2の改造リポジトリの改造版(Choco-Wakameによる)<br>
 
 一応β版です。
 
@@ -27,10 +27,6 @@ Render以外でのdeployに必要（あった方が良い）ファイルやデ�
 
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&builder=buildpack&repository=github.com/LunaKamituki/new-instance&branch=main&name=new-instance)
 <br>
-# ねむ / 自身の事情について
-引退しまーす。今までお世話になりました‼︎<br>
-理由:まじで忙しい、こんなことをやってるべきではないと喝を親に入れられましたので、引退です、まあchatworkとかにはとーきどーき来るかもです、<br>
-こちゃ繋ぎたい人は、申請する時にレポジトリに関する記述とか、話したいことがあるって書いてくれたら承認します‼︎(俺と繋ぎたい奴なんておるのか…？))<br>
-まあ、戻るとしても、落ち着いて、暇になったら来るかもです。<br>
+
 この場を借りて、お話ししました
 
