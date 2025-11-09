@@ -1,7 +1,7 @@
-console.log("1秒待機します...");
+console.log("3秒待機します...");
 setTimeout(function() {
-    console.log("1秒経ちました。コードの実行を再開します。");
-}, 1000);
+    console.log("3秒経ちました。コードの実行を再開します。");
+}, 3000);
 
 
 document.getElementById('accept-btn').addEventListener('click', function() {
