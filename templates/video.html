@@ -334,7 +334,7 @@
  <!-- トップバー -->
     <header id="top-bar">
       <div class="left-section">
-  
+         <button id="open-sidebar">☰</button> 
         <div class="navbar-logo">
           <a href="/"><img src="/img/logo/th.png" alt="Logo"></a>
         </div>
@@ -354,7 +354,29 @@
       </nav>
     </header>
 
+ <!-- サイドバー -->
+    <div id="sidebar">
+      <button id="close-sidebar">×</button>
+      <div class="sidebar-content">
+        <a href="{{ videourls[0] }}" download="{{ video_title }}">ダウンロード</a>
+        <a href="javascript:togglePlayer(false);">デフォルトで視聴する</a>
+        <a href="javascript:togglePlayer(true);">埋め込み(nocookie)で視聴する</a>
+        <a href="javascript:location.replace('/w?v={{ videoid }}')">高画質で視聴する</a>
+        <a href="javascript:location.replace('/history')">履歴を閲覧</a>
+        <label for="autonextpage">
+          自動で次の動画に遷移
+          <input id="autonextpage" type="checkbox" onchange="changeAutoNextPage(this)">
+        </label>
+          <br>
+        <label for="loop">
+          ループ再生
+          <input id="loop" type="checkbox" onchange="changeLoop(this)">
+        </label>
+      </div>
+    </div>
 
+    <!-- オーバーレイ -->
+    <div id="overlay"></div>
 
     <!-- 歯車ボタン（左下） -->
     <button class="settings-toggle" id="settingsToggle" aria-label="設定を開く">
