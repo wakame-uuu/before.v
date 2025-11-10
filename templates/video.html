@@ -354,29 +354,7 @@
       </nav>
     </header>
 
- <!-- サイドバー -->
-    <div id="sidebar">
-      <button id="close-sidebar">×</button>
-      <div class="sidebar-content">
-        <a href="{{ videourls[0] }}" download="{{ video_title }}">ダウンロード</a>
-        <a href="javascript:togglePlayer(false);">デフォルトで視聴する</a>
-        <a href="javascript:togglePlayer(true);">埋め込み(nocookie)で視聴する</a>
-        <a href="javascript:location.replace('/w?v={{ videoid }}')">高画質で視聴する</a>
-        <a href="javascript:location.replace('/history')">履歴を閲覧</a>
-        <label for="autonextpage">
-          自動で次の動画に遷移
-          <input id="autonextpage" type="checkbox" onchange="changeAutoNextPage(this)">
-        </label>
-          <br>
-        <label for="loop">
-          ループ再生
-          <input id="loop" type="checkbox" onchange="changeLoop(this)">
-        </label>
-      </div>
-    </div>
-
-    <!-- オーバーレイ -->
-    <div id="overlay"></div>
+ 
 
     <!-- 歯車ボタン（左下） -->
     <button class="settings-toggle" id="settingsToggle" aria-label="設定を開く">
@@ -394,10 +372,11 @@
         </div>
         <div>
           <select id="vcSelectPanel" style="min-width:120px;">
-            <option value="0">/watch (フルパス)</option>
-            <option value="1">/w (短縮)</option>
+            <option value="0">/watch (通常再生)</option>
+            <option value="1">/w (高画質)</option>
             <option value="2">/ume (埋め込み)</option>
             <option value="3">/edu (別モード)</option>
+            <option value="download">ダウンロード</option>
           </select>
         </div>
       </div>
@@ -412,12 +391,82 @@
         </div>
       </div>
 
+      <!-- ここから「ループ再生」設定の行が始まります -->
+  <div class="settings-row">
+    <div>
+      <label for="loop">ループ再生</label>
+      <!-- クッキー保存の説明を追加 -->
+      <div class="desc">現在の動画を繰り返し再生します（設定はクッキーで保存）。</div>
+    </div>
+    <div>
+      <input id="loop" type="checkbox" onchange="changeLoop(this)">
+    </div>
+  </div>
+
+      <!-- ここから「自動で次の動画に遷移」設定の行が始まります -->
+  <div class="settings-row">
+    <div>
+      <label for="autonextpage">自動で次の動画に遷移</label>
+      <!-- クッキー保存の説明を追加 -->
+      <div class="desc">動画の再生終了後に自動で次の動画に移動します（設定はクッキーで保存）。</div>
+    </div>
+    <div>
+      <input id="autonextpage" type="checkbox" onchange="changeAutoNextPage(this)">
+    </div>
+  </div>
+
       <div style="padding-top:10px; text-align:right;">
-        <button id="settingsSaveBtn" style="padding:8px 12px; border-radius:6px; border:1px solid rgba(0,0,0,0.08); background:#007BFF; color:#fff; cursor:pointer;">保存</button>
+    <button id="settingsSaveBtn" onclick="handleSaveSettings()" style="padding:8px 12px; border-radius:6px; border:1px solid rgba(0,0,0,0.08); background:#007BFF; color:#fff; cursor:pointer;">保存</button>
       </div>
     </div>
-
+　　
     <div class="no-theme">
+    </div>
+
+    <script>
+/**
+ * 設定パネルの「保存」ボタンがクリックされたときに実行される関数
+ */
+function handleSaveSettings() {
+  // 再生モードの選択値を取得
+  const selectElement = document.getElementById('vcSelectPanel');
+  const selectedMode = selectElement.value;
+  
+  // デモ用の動画情報（実際にはサーバーサイドの変数から取得）
+  // {{ videourls[0] }} と {{ video_title }} は、このJavaScriptが実行される前に
+  // 実際のURLとタイトルに置き換えられている必要があります。
+  const videoUrl = '{{ videourls[0] }}'; 
+  const videoTitle = '{{ video_title }}'; 
+
+  if (selectedMode === 'download') {
+    // ダウンロードが選択された場合：
+    // クッキー保存ではなく、ダウンロード処理を実行する
+
+    // ダウンロード用の非表示リンクを作成し、クリックイベントを発生させる
+    const downloadLink = document.createElement('a');
+    downloadLink.href = videoUrl;
+    // 'download' 属性を設定することで、ブラウザにダウンロードを指示する
+    downloadLink.download = videoTitle; 
+    downloadLink.style.display = 'none'; // 画面に表示しない
+    document.body.appendChild(downloadLink);
+    
+    // プログラム的にリンクをクリックしてダウンロードを開始
+    downloadLink.click();
+    
+    // 作成した要素を削除
+    document.body.removeChild(downloadLink);
+
+    // ダウンロード開始後、設定パネルを閉じるなどの処理があればここに追加
+    // 例: closeModal(); 
+
+  } else {
+    // それ以外の再生モードが選択された場合：
+    // クッキーに設定を保存する通常の処理を実行する（この処理は別途実装が必要）
+    console.log(`設定をクッキーに保存しました: モード ${selectedMode}`);
+    // 例: saveSettingToCookie('playbackMode', selectedMode);
+  }
+}
+</script>
       <!-- メインコンテンツ -->
       <main class="main-content">
         <div class="video-container">
