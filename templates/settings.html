@@ -294,6 +294,33 @@
     </div>
   </div>
 
+    <!-- ここから「ループ再生」設定の行が始まります -->
+  <div class="settings-row">
+    <div>
+      <label for="loop">ループ再生</label>
+      <!-- クッキー保存の説明を追加 -->
+      <div class="desc">現在の動画を繰り返し再生します（設定はクッキーで保存）。</div>
+    </div>
+    <div>
+      <input id="loop" type="checkbox" onchange="changeLoop(this)">
+    </div>
+  </div>
+
+      <!-- ここから「自動で次の動画に遷移」設定の行が始まります -->
+  <div class="settings-row">
+    <div>
+      <label for="autonextpage">自動で次の動画に遷移</label>
+      <!-- クッキー保存の説明を追加 -->
+      <div class="desc">動画の再生終了後に自動で次の動画に移動します（設定はクッキーで保存）。</div>
+    </div>
+    <div>
+      <input id="autonextpage" type="checkbox" onchange="changeAutoNextPage(this)">
+    </div>
+  </div>
+
+     
+
+    
   <div style="padding-top:10px; text-align:right;">
     <button id="settingsSaveBtn" style="padding:8px 12px; border-radius:6px; border:1px solid rgba(0,0,0,0.08); background:#007BFF; color:#fff; cursor:pointer;">保存</button>
   </div>
